@@ -33,8 +33,8 @@ scheduler:
     name: linear
     start_epoch: 25
     min_lr: 0.0000001
-
-
+![first_second_experiments](tensorboard_files/Train_G_Loss.svg) 
+![first_second_experiments](tensorboard_files/Train_G_Loss_adv.svg )
 
 ## Setup 3
 ---
