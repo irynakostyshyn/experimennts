@@ -33,54 +33,56 @@ scheduler:
     name: linear
     start_epoch: 25
     min_lr: 0.0000001
-![first_second_experiments](tensorboard_files/Train_G_Loss.svg) 
-![first_second_experiments](tensorboard_files/Train_G_Loss_adv.svg )
+
 
 ## Setup 3
 ---
-project: deblur_gan
-experiment_desc: fpn2
-dataroot_train: dataset/
-dataroot_val: dataset/
-phase: train
-warmup_num: 3
-model:
-    g_name: resnet
-    blocks: 9
-    d_name: patch_gan
-    d_layers: 3
-    content_loss: l1
-    feature_loss: perceptual
-    disc_loss: ragan
-    content_coef: 0.5
-    feature_coef: 0.006
-    adv_coef: 0.001
-    learn_residual: True
-    norm_layer: instance
-    dropout: True  
-num_epochs: 40
-num_workers: 4
-batch_size: 4
-image_size: [256, 256]
-fineSize: 256
-dataset: 
-    task: deblur
-optimizer: 
-    name: adam
-    lr: 0.0001
-scheduler:
-    name: linear
-    start_epoch: 25
-    min_lr: 0.0000001
+I changed backbone to inception to check performace
 
-
+### losses
+Yellow - first experiment
+Blue - second experiment
+Light Blue - third experiment
+Train
+![first_second_experiments](tensorboard_files/123_train.jpeg) 
+Validation
+![first_second_experiments](tensorboard_files/123_val.jpeg)
 
 ## Setup 4
-learning rate - 10−4
+---
+model: fpn_mobilenet
+
+content_loss: l2
+
+disc_loss: ragan-ls
+
+no scheduler
 
 ## Setup 5
-learning rate - 10−4
+---
+model: fpn_mobilenet
+
+content_loss: l2
+
+no scheduler
 
 ## Setup 6
-learning rate of 10−4
+---
+model: fpn_mobilenet
+
+learning rate of 10−3
+
+disc_loss: gan
+
+scheduler:
+    name: linear
+    start_epoch: 15
+    min_lr: 0.0001
+
+### Losses 
+I messed it up, all 3 exps was printd to one file
+Train
+![experiments](tensorboard_files/6_epoch.jpeg) 
+Validation
+![experiments](tensorboard_files/6_val.jpeg)
 
